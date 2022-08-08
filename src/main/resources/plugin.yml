@@ -1,0 +1,19 @@
+  name: YUtilsStaff
+  main:  com.ymain.Ymain
+  version: 1.0
+  api-version: 1.19
+  commands:
+    yajuda:
+      aliases: yhelp
+    admin:
+      aliases: sigilo
+    gm:
+      aliases: gamemode
+    speed:
+      aliases: flash
+    chuva:
+      aliases: toggledownfall
+    dia:
+      aliases: day
+    noite:
+      aliases: night

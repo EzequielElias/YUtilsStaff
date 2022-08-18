@@ -17,3 +17,5 @@
       aliases: day
     noite:
       aliases: night
+    clear:
+      aliases: cl

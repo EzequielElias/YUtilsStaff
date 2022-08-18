@@ -31,5 +31,6 @@ public class Ymain extends JavaPlugin {
                         getCommand("chuva").setExecutor(new Ystopraincommand());
                             getCommand("dia").setExecutor(new Ydayatnightcommand());
                                 getCommand("noite").setExecutor(new Ydayatnightcommand());
+                                    getCommand("clear").setExecutor(new Ycommandclear());
     }
 }

@@ -3,11 +3,11 @@ package com.ymain.events;
 import com.ymain.items.Yjail;
 import com.ymain.items.Yknockbackstick;
 import com.ymain.items.Ythoraxe;
-import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.event.inventory.InventoryCreativeEvent;
 import org.bukkit.inventory.Inventory;
 
 import java.util.Objects;
@@ -15,14 +15,17 @@ import java.util.Objects;
 public class Yplayermoveiteminventoryevent implements Listener {
 
     @EventHandler
-    public void onMoveItemInventory(InventoryClickEvent e) {
+    public void onMoveItemInventory(InventoryClickEvent e, InventoryCreativeEvent eic) {
         Ythoraxe ythoraxe = new Ythoraxe();
         Yknockbackstick yknockbackstick = new Yknockbackstick();
         Yjail yjail = new Yjail();
 
         Player p = (Player) e.getWhoClicked();
-        Material m = Material.NETHERITE_AXE;
         Inventory i = p.getInventory();
+
+        if(eic.getWhoClicked().dropItem(true)) {
+            return;
+        }
 
         if ((Objects.requireNonNull(e.getCurrentItem()).equals(ythoraxe.getIs())
 
@@ -36,13 +39,15 @@ public class Yplayermoveiteminventoryevent implements Listener {
 
                                 && e.getCurrentItem() != null) {
 
-                                    p.sendMessage("§cNão é possível alterar o local do item!");
+                                    p.sendMessage("§c[C4 DEV] Não é possível alterar o local do item!");
                                         e.setCancelled(true);
                                             e.getView().close();
                                                 i.clear();
                                                     i.setItem(2, ythoraxe.getIs());
                                                         i.setItem(4, yknockbackstick.getIs());
                                                             i.setItem(6, yjail.getIs());
+
+
 
                 if (e.getClick().isKeyboardClick()
 
@@ -56,7 +61,7 @@ public class Yplayermoveiteminventoryevent implements Listener {
                                                 i.setItem(6, yjail.getIs());
 }
 
-            if((Objects.requireNonNull(e.getClickedInventory()).getItem(2).equals(ythoraxe.getIs())
+            if((Objects.equals(Objects.requireNonNull(e.getClickedInventory()).getItem(2), ythoraxe.getIs())
 
                     && e.getClick().isKeyboardClick())
 
